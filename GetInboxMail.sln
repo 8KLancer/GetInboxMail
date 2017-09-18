@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetInboxMail", "GetInboxMail\GetInboxMail.csproj", "{3F6258E3-3B88-4BED-8F2B-1CC6C890677E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GmailAPIServices", "GmailAPIServices\GmailAPIServices.csproj", "{BE104E56-B3D2-4DF0-97E8-4B09C12349BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INboxImapServices", "INboxImapServices\INboxImapServices.csproj", "{AA55ED50-6B24-4A44-8D33-3D8EDEF17361}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F6258E3-3B88-4BED-8F2B-1CC6C890677E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F6258E3-3B88-4BED-8F2B-1CC6C890677E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F6258E3-3B88-4BED-8F2B-1CC6C890677E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F6258E3-3B88-4BED-8F2B-1CC6C890677E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE104E56-B3D2-4DF0-97E8-4B09C12349BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE104E56-B3D2-4DF0-97E8-4B09C12349BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE104E56-B3D2-4DF0-97E8-4B09C12349BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE104E56-B3D2-4DF0-97E8-4B09C12349BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA55ED50-6B24-4A44-8D33-3D8EDEF17361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA55ED50-6B24-4A44-8D33-3D8EDEF17361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA55ED50-6B24-4A44-8D33-3D8EDEF17361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA55ED50-6B24-4A44-8D33-3D8EDEF17361}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Imap";
+}
+<h2>Imap</h2>
+<div>
+    <input type="button" class="btn btn-warning" value="Получить через Imap" id="btn_imap" style="margin:10px;" />
+    <input type="text" id="user_login" placeholder="type login here..." />
+    <input type="password" id="user_password" placeholder="type password here..." />
+</div>
+<div id="preloader" style="display:none">Загрузка...</div>
+<div>
+    <table id="tablecontent" class="table table-bordered table-hover" border="1" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Отправитель</th>
+                <th>Дата</th>
+                <th>Тема</th>
+            </tr>
+        </thead>
+        <tbody id="tbodycontent"></tbody>
+    </table>
+</div>
+<ul class="pagination" id="paging"></ul>
+@section scripts{
+    <script src="~/Scripts/common.js"></script>
+    <script>
+        (function () {
+            $("#btn_imap").on("click", getMailImapService); 
+
+            function getMailImapService() {
+                var login = $("#user_login").val();
+                var password = $("#user_password").val();
+                var preloader = $("#preloader");
+
+                $.ajax({
+                    url: "/api/ImapService",
+                    type: "POST",
+                    data: JSON.stringify({
+                        'login': login,
+                        'password': password
+                    }),
+                    contentType: "application/json",
+                    beforeSend: function () {
+                        preloader.removeAttr("style").css("display", "block");
+                    },
+                    success: function (data) {
+                        preloader.removeAttr("style").css("display", "none");
+                        var tbody = $("#tbodycontent").empty();
+                        for (var i = 0; i < data.length; i++) {
+                            tbody.append("<tr><td>" + data[0].Id + "</td><td>" + data[i].From + "</td><td>" + data[i].Date + "</td><td>" + data[i].Subject + "</td></tr>");
+                        }
+                    }
+                });
+            }          
+        })();
+    </script>
+}

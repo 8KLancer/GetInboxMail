@@ -1,0 +1,50 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <hr />
+    <a href="Home/Imap">Imap</a>
+    <div>
+        <input type="button" class="btn btn-default" value="Получить через GMailAPI"  id="btn_gmailapi" style="margin:10px;"/>
+    </div>
+    <div id="preloader" style="display:none">Загрузка...</div>
+    <div>
+        <table id="tablecontent" class="table table-bordered table-hover" border="1" cellspacing="0">
+            <thead> 
+                <tr>
+                    <th>Id</th>
+                    <th>Отправитель</th>
+                    <th>Дата</th>
+                    <th>Тема</th>
+                </tr>
+            </thead>
+            <tbody id="tbodycontent">            
+            </tbody>
+       </table>
+    </div>
+    <ul class="pagination" id="paging"></ul>
+}
+@section scripts
+{
+    <script src="~/Scripts/common.js"></script>
+    <script>
+        (function () {
+            $("#btn_gmailapi").on("click", getMailGmailAPi);
+                       
+
+            // инициализация таблицы и пейджинга
+            function getMailGmailAPi() {    
+                var preloader = $("#preloader");
+                $.ajax({
+                    url: "/api/GmailAPI/",
+                    beforeSend: function () {
+                        preloader.removeAttr("style").css("display", "block");
+                    },
+                    success: function (data) {
+                        onSuccess(data, preloader);                        
+                    }
+                });
+            }
+
+              
+        })()
+    </script>
+}
