@@ -24,7 +24,6 @@ namespace GetInboxMail.Models
 
     }
 
-
     public class ApplicationUser : IdentityUser
     {
         public ApplicationUser() 
@@ -33,20 +32,17 @@ namespace GetInboxMail.Models
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
-            // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Здесь добавьте утверждения пользователя
             return userIdentity;
         }
     }
-
 
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
                 : base(store)
-        {
-        }
+        { }
+
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
                                                 IOwinContext context)
         {
@@ -56,7 +52,6 @@ namespace GetInboxMail.Models
         }
     }
 
-    // Настройка диспетчера входа для приложения.
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)

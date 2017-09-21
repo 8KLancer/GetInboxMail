@@ -17,7 +17,6 @@ namespace GetInboxMail.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        // GET: Account
         public ActionResult Index()
         {
             return View();
@@ -95,8 +94,6 @@ namespace GetInboxMail.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -104,8 +101,6 @@ namespace GetInboxMail.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -115,9 +110,6 @@ namespace GetInboxMail.Controllers
             {
                 return View(model);
             }
-
-            // Сбои при входе не приводят к блокированию учетной записи
-            // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, shouldLockout: false);
             switch (result)
             {
@@ -130,7 +122,6 @@ namespace GetInboxMail.Controllers
             }
         }
 
-        // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()

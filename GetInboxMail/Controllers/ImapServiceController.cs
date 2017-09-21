@@ -1,4 +1,5 @@
-﻿using GmailAPIServices;
+﻿using GetInboxMail.Models;
+using GmailAPIServices;
 using INboxImapServices;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -13,12 +14,6 @@ namespace GetInboxMail.Controllers
         {
             IEnumerable<GmailAPIService.CurrentMessage> messages = service.GetAllMessages(model.Login, model.Password);
             return messages;
-        }
-
-        public class AuthModel
-        {
-            public string Login { get; set; }
-            public string Password { get; set; }
-        }
+        }        
     }
 }

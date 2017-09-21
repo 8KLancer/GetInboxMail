@@ -14,7 +14,7 @@ namespace GetInboxMail.Controllers
     public class GmailAPIController : ApiController
     {
         GmailAPIService service = new GmailAPIService();
-        private const int pageSize = 10; // количество объектов на страницу
+        private const int pageSize = 10;
 
         public async Task<IEnumerable<GmailAPIService.CurrentMessage>> Post([FromBody]int pageNumberTO)
         {

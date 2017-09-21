@@ -18,15 +18,15 @@ namespace GmailAPIServices
         public int MessagesCount { get; private set; }
         private string[] Scopes = { GmailService.Scope.GmailReadonly };
         private string ApplicationName = "Google Mail";
+
         public class CurrentMessage
         {
             public string Id { get; set; }
             public string From { get; set; }
             public string Date { get; set; }
             public string Subject { get; set; }
-            public CurrentMessage()
-            {
-            }
+            public CurrentMessage() { }
+
             public CurrentMessage(string _id, string _from, string _date, string _subject)
             {
                 Id = _id;
@@ -36,7 +36,7 @@ namespace GmailAPIServices
             }
         }
 
-        public async Task<IEnumerable<CurrentMessage>> GetRangeMessagesAsync(int skip, int take)
+        private GmailService CreateGmailService()
         {
             UserCredential credential;
 
@@ -56,12 +56,17 @@ namespace GmailAPIServices
             }
 
             // Create Gmail API service.
-            var service = new GmailService(new BaseClientService.Initializer()
+            GmailService service = new GmailService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
+            return service;
+        }
 
+        public async Task<IEnumerable<CurrentMessage>> GetRangeMessagesAsync(int skip, int take)
+        {
+            GmailService service = CreateGmailService();
 
             // Define parameters of request.
             UsersResource.LabelsResource.ListRequest labelsRequest = service.Users.Labels.List("me");
@@ -69,12 +74,18 @@ namespace GmailAPIServices
             MessagesCount = messages.Count();
             messages = messages.Skip(skip * take).Take(take).ToList();
             
+            List<CurrentMessage> messagesInfo = await GetMessagesPartsAsync(messages, service);
+            return messagesInfo;
+        }
+
+        private async Task<List<CurrentMessage>> GetMessagesPartsAsync(List<Message> messages, GmailService service)
+        {
             List<CurrentMessage> messagesInfo = new List<CurrentMessage>();
             if (messages != null)
             {
                 foreach (var msg in messages)
                 {
-                    var emailInfoRequest = service.Users.Messages.Get("me", msg.Id);
+                    UsersResource.MessagesResource.GetRequest emailInfoRequest = service.Users.Messages.Get("me", msg.Id);
                     var emailInfoResponse = await emailInfoRequest.ExecuteAsync();
 
                     if (emailInfoResponse != null)
@@ -95,23 +106,13 @@ namespace GmailAPIServices
                             {
                                 currentMsg.Subject = mParts.Value;
                             }
-
-                            // get message body
-                            //if (emailInfoResponse.Payload.Parts == null && emailInfoResponse.Payload.Body != null)
-                            //    body = DecodeBase64String(emailInfoResponse.Payload.Body.Data);
-                            //else
-                            //    body = GetNestedBodyParts(emailInfoResponse.Payload.Parts, "");
-
                         }
                         messagesInfo.Add(currentMsg);
                     }
                 }
             }
-
             return messagesInfo;
         }
-
-
 
         private async Task<List<Message>> ListMessages(GmailService service, String userId, String query)
         {
@@ -138,48 +139,7 @@ namespace GmailAPIServices
             } while (!String.IsNullOrEmpty(request.PageToken));
 
             return result;
-        }
-
-        //public  static String DecodeBase64String(string s)
-        //{
-        //    var ts = s.Replace("-", "+");
-        //    ts = ts.Replace("_", "/");
-        //    var bc = Convert.FromBase64String(ts);
-        //    var tts = Encoding.UTF8.GetString(bc);
-
-        //    return tts;
-        //}
-
-        //private String GetNestedBodyParts(IList<MessagePart> part, string curr)
-        //{
-        //    string str = curr;
-        //    if (part == null)
-        //    {
-        //        return str;
-        //    }
-        //    else
-        //    {
-        //        foreach (var parts in part)
-        //        {
-        //            if (parts.Parts == null)
-        //            {
-        //                if (parts.Body != null && parts.Body.Data != null)
-        //                {
-        //                    var ts = DecodeBase64String(parts.Body.Data);
-        //                    str += ts;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                return GetNestedBodyParts(parts.Parts, str);
-        //            }
-        //        }
-
-        //        return str;
-        //    }
-        //}
-
+        }        
     }
-
 }
 

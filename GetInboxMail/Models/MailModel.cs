@@ -6,10 +6,10 @@ namespace GetInboxMail.Models
 {    
     public class PageInfo
     {
-        public int PageNumber { get; set; } // номер текущей страницы
-        public int PageSize { get; set; } // кол-во объектов на странице
-        public int TotalItems { get; set; } // всего объектов
-        public int TotalPages  // всего страниц
+        public int PageNumber { get; set; } 
+        public int PageSize { get; set; } 
+        public int TotalItems { get; set; } 
+        public int TotalPages  
         {
             get { return (int)Math.Ceiling((decimal)TotalItems / PageSize); }
         }
@@ -19,5 +19,11 @@ namespace GetInboxMail.Models
     {
         public IEnumerable<GmailAPIService.CurrentMessage> Messages { get; set; }
         public PageInfo PageInfo { get; set; }
+    }
+
+    public class AuthModel
+    {
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }
