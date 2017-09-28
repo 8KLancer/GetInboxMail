@@ -1,4 +1,3 @@
-F:\Project\GetInboxMail\GmailAPIServices\bin\Debug\client_secret.json
 F:\Project\GetInboxMail\GmailAPIServices\bin\Debug\GmailAPIServices.dll
 F:\Project\GetInboxMail\GmailAPIServices\bin\Debug\GmailAPIServices.pdb
 F:\Project\GetInboxMail\GmailAPIServices\bin\Debug\Google.Apis.Auth.dll

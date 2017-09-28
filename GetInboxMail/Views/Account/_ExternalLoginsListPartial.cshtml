@@ -1,7 +1,6 @@
 ﻿@model GetInboxMail.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
 
-<h4>Используйте для входа другую службу.</h4>
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();

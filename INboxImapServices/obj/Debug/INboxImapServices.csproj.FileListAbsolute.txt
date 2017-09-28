@@ -1,4 +1,3 @@
-F:\Project\GetInboxMail\INboxImapServices\bin\Debug\client_secret.json
 F:\Project\GetInboxMail\INboxImapServices\bin\Debug\INboxImapServices.dll
 F:\Project\GetInboxMail\INboxImapServices\bin\Debug\INboxImapServices.pdb
 F:\Project\GetInboxMail\INboxImapServices\bin\Debug\AE.Net.Mail.dll

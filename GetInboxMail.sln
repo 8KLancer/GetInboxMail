@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GmailAPIServices", "GmailAP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INboxImapServices", "INboxImapServices\INboxImapServices.csproj", "{AA55ED50-6B24-4A44-8D33-3D8EDEF17361}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetClientSecret", "SetClientSecret\SetClientSecret.csproj", "{F40F05D6-F8D9-421E-A8F9-EAAC95420BCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AA55ED50-6B24-4A44-8D33-3D8EDEF17361}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA55ED50-6B24-4A44-8D33-3D8EDEF17361}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA55ED50-6B24-4A44-8D33-3D8EDEF17361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F40F05D6-F8D9-421E-A8F9-EAAC95420BCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F40F05D6-F8D9-421E-A8F9-EAAC95420BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F40F05D6-F8D9-421E-A8F9-EAAC95420BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F40F05D6-F8D9-421E-A8F9-EAAC95420BCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
